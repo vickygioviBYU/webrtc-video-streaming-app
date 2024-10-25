@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>WebRTC-in-Rust</title>
+    <style>
+        @keyframes changeColor {
+            0% {color: rgb(255, 255, 255);}
+            50% {color: rgb(0, 0, 0);}
+            100% {color: rgb(255, 255, 255);}
+        }
+
+        .sinulabel {
+            /* color: rgb(8, 8, 156); */
+            animation: changeColor ease;
+            animation-iteration-count: infinite;
+            animation-duration: 4s;
+            animation-fill-mode: both;
+        }
+        
+    </style>
+</head>
+
+<body style="text-align: center; background-color:#0077b6;">
+    <section id="app"></section>
+    <div id="container">
+        <h1><a title="WebRTC in RUST !" style="color: white;">Canavesys LAN Video Streaming</a></h1>
+        <p style="color: white;">By Giovanni Canavesi</p>
+
+        <label id="sessionid_heading" style="color: white;">Hosting Session ID:</label> 
+        <label style="color: white;" class= "sinulabel" id="sessionid_lbl" ></label>
+        <!-- <label class= "sinulabel" id="sessionid_lbl" style="color: rgb(29, 161, 69);" ></label> -->
+        <br>
+        <label id="session_connection_status" style="color: rgb(255, 255, 255);"></label>
+        <label  id="session_connection_status_error" style="color: rgb(100, 9, 9);"></label>
+
+
+        <h3><a title="Peer A Video" style="color: white; ">Peer A Video</a></h3>
+        <video id="peer_a_video" width="1280" height="960" style="color: white; outline-style: solid;" autoplay muted></video>
+        <br/>
+        <br>
+        <div>
+            <button id="connect_to_session" style="height:50px">Connect to Session</button>
+        </div>
+        <br>
+        <div>
+             <input type="text" id="sid_input" name="sid_input"/>
+        </div>
+        <br>
+        
+
+        <hr>
+        <br>
+        <div>
+            <button id="debug_client_state" style="height:50px">Print Client State</button>
+        </div>
+        <br>
+        <div>
+            <label id="ws_conn_lbl" style="background-color: rgb(0, 0, 0); color: rgb(29, 255, 69);"></label> 
+        </div>
+        <br>
+        <div>
+            <button id="debug_signal_server_state" style="height:50px">Print Signalling Server State </button>
+        </div>
+        <br>
+        <div>
+            <label id="ws_conn_lbl_err" style="color: rgb(100, 9, 9);"></label>
+        </div>
+        
+        
+        
+        
+        
+        
+
+
+        <hr>
+        <h3><a title="Peer B Video" style="color: white; ">Peer B Video</a></h3>
+        <video id="peer_b_video" width="1280" height="960" style="color: white; outline-style: solid;" autoplay muted playsinline></video>
+        <br>
+        <br>
+        <button id="start_session" style="height:50px">Start Session</button>
+
+
+    </div>
+
+    <br>
+
+    <script type="module">
+        import init from '/pkg/wasm_client.js';
+        init('/pkg/wasm_client_bg.wasm');
+    </script>
+</body>
+
+</html>
